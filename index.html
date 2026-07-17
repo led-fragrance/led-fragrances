@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0d0d">
+<title>LED Fragrances — Curated Luxury Fragrances</title>
+<style>
+:root {
+  --bg:#0d0d0d; --panel:#151515; --panel2:#1b1b1b; --text:#f4f1ea;
+  --muted:#b8b2a7; --gold:#b8955a; --line:#2c2a27; --white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+h1,h2,h3,.serif{font-family:Georgia,'Times New Roman',serif;font-weight:500}
+a{color:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{letter-spacing:5px;font-size:21px;color:var(--gold)}
+.navlinks{display:flex;gap:18px;font-size:14px}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.hero{min-height:76vh;display:grid;place-items:center;text-align:center;padding:70px 22px;background:
+radial-gradient(circle at 50% 20%,rgba(184,149,90,.12),transparent 36%),
+linear-gradient(180deg,#111,#0d0d0d)}
+.hero h1{font-size:clamp(54px,11vw,116px);letter-spacing:13px;margin:0;color:var(--gold)}
+.hero .sub{letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-size:13px}
+.hero p{max-width:700px;color:#d6d0c6;font-size:18px}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border:1px solid var(--gold);text-decoration:none;text-transform:uppercase;letter-spacing:1.6px;font-size:12px}
+.btn.primary{background:var(--gold);color:#111}
+section{max-width:1200px;margin:auto;padding:64px 20px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+.section-head h2{font-size:38px;margin:0}
+.section-head p{color:var(--muted);max-width:600px;margin:0}
+.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.price-card{border:1px solid var(--line);background:var(--panel);padding:20px}
+.price-card h3{margin:0 0 6px;font-size:24px}
+.symbol{color:var(--gold);font-size:22px}
+.price-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:16px}
+.price-grid div{background:#111;padding:10px 5px;text-align:center;border:1px solid var(--line);font-size:12px}
+.price-grid b{display:block;color:var(--gold);font-size:15px}
+.controls{display:grid;grid-template-columns:1fr auto auto;gap:12px;margin-bottom:22px}
+input,select{width:100%;background:#111;color:var(--text);border:1px solid var(--line);padding:13px 14px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);padding:20px;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-2px);border-color:#5b4a32}
+.badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.badge{font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:5px 8px;border:1px solid var(--line);color:var(--muted)}
+.badge.tier{color:var(--gold);border-color:#5b4a32}
+.card h3{margin:8px 0 3px;font-size:22px}
+.card .house{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:1.4px}
+.card p{color:#d1cbc1;margin-bottom:0}
+.hall{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.hall-item{display:flex;justify-content:space-between;gap:15px;background:linear-gradient(135deg,#191713,#121212);border:1px solid #4a3c28;padding:18px}
+.hall-num{font-family:Georgia,serif;color:var(--gold);font-size:30px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.about-box{background:var(--panel);border:1px solid var(--line);padding:28px}
+footer{border-top:1px solid var(--line);padding:38px 20px;text-align:center;color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.open{display:flex}
+.modal-card{background:#131313;border:1px solid #51422e;max-width:720px;width:100%;max-height:90vh;overflow:auto;padding:26px;position:relative}
+.close{position:absolute;right:16px;top:12px;background:none;border:0;color:white;font-size:30px;cursor:pointer}
+.modal-card h2{font-size:35px;margin:6px 0}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.detail-grid div{border:1px solid var(--line);padding:12px}
+.detail-grid span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.order-table{width:100%;border-collapse:collapse;margin:18px 0}
+.order-table th,.order-table td{border:1px solid var(--line);padding:10px;text-align:center}
+.sms{width:100%;text-align:center;margin-top:12px}
+.small{font-size:12px;color:var(--muted)}
+@media(max-width:900px){
+ .pricing,.grid{grid-template-columns:repeat(2,1fr)}
+ .about{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .navlinks{display:none}
+ .controls{grid-template-columns:1fr}
+ .pricing,.grid,.hall{grid-template-columns:1fr}
+ .section-head{display:block}
+ .section-head p{margin-top:8px}
+ .detail-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand serif">LED FRAGRANCES</div>
+    <nav class="navlinks">
+      <a href="#collections">Pricing</a>
+      <a href="#hall">Hall of Fame</a>
+      <a href="#browse">Browse</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="sub">Curated Luxury Fragrances</div>
+    <h1>LED</h1>
+    <p>Discover more than 75 hand-selected designer, niche and ultra-luxury fragrances available in premium decants.</p>
+    <div class="actions">
+      <a class="btn primary" href="#browse">Browse Collection</a>
+      <a class="btn" href="#hall">Eddie's Hall of Fame</a>
+    </div>
+  </div>
+</section>
+
+<section id="collections">
+  <div class="section-head">
+    <div><div class="sub">Simple tier pricing</div><h2>Decant Pricing</h2></div>
+    <p>Each fragrance is marked with a collection symbol. Choose the size you want, then use the matching tier price.</p>
+  </div>
+  <div class="pricing">
+    <div class="price-card"><div class="symbol">▲</div><h3>Value</h3><div class="price-grid"><div>2 mL<b>$6</b></div><div>5 mL<b>$14</b></div><div>10 mL<b>$24</b></div><div>15 mL<b>$34</b></div><div>30 mL<b>$60</b></div></div></div>
+    <div class="price-card"><div class="symbol">●</div><h3>Premium</h3><div class="price-grid"><div>2 mL<b>$8</b></div><div>5 mL<b>$18</b></div><div>10 mL<b>$32</b></div><div>15 mL<b>$48</b></div><div>30 mL<b>$80</b></div></div></div>
+    <div class="price-card"><div class="symbol">◆</div><h3>Luxury</h3><div class="price-grid"><div>2 mL<b>$12</b></div><div>5 mL<b>$28</b></div><div>10 mL<b>$50</b></div><div>15 mL<b>$75</b></div><div>30 mL<b>$140</b></div></div></div>
+    <div class="price-card"><div class="symbol">★</div><h3>Prestige</h3><div class="price-grid"><div>2 mL<b>$18</b></div><div>5 mL<b>$40</b></div><div>10 mL<b>$75</b></div><div>15 mL<b>$110</b></div><div>30 mL<b>$220</b></div></div></div>
+  </div>
+  <p class="small">🖤 indicates a unisex fragrance. Collection placement reflects bottle size, replacement cost, rarity and overall value.</p>
+</section>
+
+<section id="hall">
+  <div class="section-head">
+    <div><div class="sub">Personal recommendations</div><h2>Eddie's Hall of Fame</h2></div>
+    <p>Ten fragrances Eddie personally stands behind—strong choices for customers who want a confident recommendation.</p>
+  </div>
+  <div class="hall" id="hallGrid"></div>
+</section>
+
+<section id="browse">
+  <div class="section-head">
+    <div><div class="sub">75 curated bottles</div><h2>Browse the Collection</h2></div>
+    <p>Search by fragrance, house, or scent style. Select a bottle to see its profile and pricing.</p>
+  </div>
+  <div class="controls">
+    <input id="search" placeholder="Search fragrance, house, notes or style…">
+    <select id="tier">
+      <option value="">All collections</option>
+      <option>Value</option><option>Premium</option><option>Luxury</option><option>Prestige</option>
+    </select>
+    <select id="gender">
+      <option value="">All</option><option value="unisex">Unisex</option><option value="masculine">Masculine</option>
+    </select>
+  </div>
+  <div class="grid" id="fragranceGrid"></div>
+</section>
+
+<section id="about">
+  <div class="section-head">
+    <div><div class="sub">The LED difference</div><h2>Curated, Not Collected</h2></div>
+  </div>
+  <div class="about">
+    <div class="about-box">
+      <h3>About the Collection</h3>
+      <p>Every fragrance is personally selected, worn and evaluated. The goal is simple: give customers access to memorable scents without the commitment of a full bottle.</p>
+    </div>
+    <div class="about-box">
+      <h3>Need a Recommendation?</h3>
+      <p>Tell Eddie what you already wear, the occasion, and the type of scent you enjoy. He will help narrow the collection to the fragrances most likely to fit you.</p>
+      <a class="btn primary" href="sms:+13214309626?body=Hi%20Eddie%2C%20I%27d%20like%20a%20fragrance%20recommendation.">Text Eddie</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="brand serif">LED FRAGRANCES</div>
+  <p>Curated Luxury Fragrances • Nashville, Tennessee</p>
+  <p><a href="sms:+13214309626">321-430-9626</a></p>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const fragrances = [{"house": "Paco Rabanne", "name": "1 Million Golden Oud", "tier": "Premium", "unisex": false, "profile": "Warm oud, amber, spice and sweet woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 0, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Roja Parfums", "name": "Amber Aoud Absolue Précieux", "tier": "Prestige", "unisex": true, "profile": "Opulent amber, rose, oud and deep resinous warmth.", "season": "Fall / Winter", "occasion": "Formal / Evening", "id": 1, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Anelo", "name": "Anelo", "tier": "Premium", "unisex": true, "profile": "Smooth modern woods, amber and polished musk.", "season": "All seasons", "occasion": "Day / Evening", "id": 2, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Mancera", "name": "Aoud Lemon Mint", "tier": "Premium", "unisex": true, "profile": "Bright lemon and mint over creamy oud and amber.", "season": "Spring / Summer", "occasion": "Daytime", "id": 3, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Montale", "name": "Arabians Tonka", "tier": "Premium", "unisex": true, "profile": "Sweet tonka, saffron, rose and powerful amber woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 4, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Lattafa", "name": "Asad", "tier": "Value", "unisex": false, "profile": "Spicy amber, vanilla and dark woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 5, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Lattafa", "name": "Asad Elixir", "tier": "Value", "unisex": false, "profile": "Richer spicy amber with vanilla and smoky depth.", "season": "Fall / Winter", "occasion": "Evening", "id": 6, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Lattafa", "name": "Asad Zanzibar Limited Edition", "tier": "Value", "unisex": false, "profile": "Creamy tropical spice with soft woods and sweetness.", "season": "Spring / Summer", "occasion": "Casual", "id": 7, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "City Rhythm", "name": "Austin", "tier": "Premium", "unisex": true, "profile": "Fresh aromatic woods with a modern city-night feel.", "season": "Spring / Fall", "occasion": "Day / Evening", "id": 8, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Nasomatto", "name": "Black Afgano", "tier": "Prestige", "unisex": true, "profile": "Dark resin, smoke, woods and a dense narcotic character.", "season": "Fall / Winter", "occasion": "Night", "id": 9, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Montale", "name": "Black Aoud", "tier": "Premium", "unisex": true, "profile": "Rose, oud and patchouli with strong projection.", "season": "Fall / Winter", "occasion": "Evening", "id": 10, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "French Avenue", "name": "Black Friday", "tier": "Value", "unisex": true, "profile": "Dark sweet woods, amber and spice.", "season": "Fall / Winter", "occasion": "Evening", "id": 11, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Oakcha", "name": "Blue Velvet", "tier": "Value", "unisex": true, "profile": "Smooth fresh woods with clean amber and musk.", "season": "Spring / Summer", "occasion": "Daily", "id": 12, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "D.S. & Durga", "name": "Burning Barbershop", "tier": "Luxury", "unisex": true, "profile": "Smoky lavender, mint, vanilla and charred woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 13, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Balmain", "name": "Carbone", "tier": "Luxury", "unisex": false, "profile": "Dark mineral woods, leather and smoky amber.", "season": "Fall / Winter", "occasion": "Statement", "id": 14, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Parfums de Marly", "name": "Carlisle", "tier": "Prestige", "unisex": false, "profile": "Rich apple, patchouli, vanilla and dark woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 15, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Tom Ford", "name": "Cherry Smoke", "tier": "Luxury", "unisex": true, "profile": "Dark cherry, smoke, leather and warm woods.", "season": "Fall / Winter", "occasion": "Night", "id": 16, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Armaf", "name": "Club de Nuit Intense Man Extrait", "tier": "Value", "unisex": false, "profile": "Smoky citrus, woods and amber with strong performance.", "season": "All seasons", "occasion": "Daily / Evening", "id": 17, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Armaf", "name": "Club de Nuit Precieux I", "tier": "Premium", "unisex": false, "profile": "Bright pineapple, woods and amber with polished sweetness.", "season": "All seasons", "occasion": "Daily", "id": 18, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "House of Bō", "name": "Cosmos", "tier": "Prestige", "unisex": true, "profile": "Luxurious woods, spice and modern amber.", "season": "All seasons", "occasion": "Signature", "id": 19, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Orto Parisi", "name": "Cuoium", "tier": "Prestige", "unisex": true, "profile": "Raw leather, smoke, animalic woods and resin.", "season": "Fall / Winter", "occasion": "Statement", "id": 20, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Amouage", "name": "Decision", "tier": "Prestige", "unisex": true, "profile": "Bold aromatic spice, woods and rich incense.", "season": "Fall / Winter", "occasion": "Formal / Evening", "id": 21, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Emporio Armani", "name": "Stronger With You", "tier": "Premium", "unisex": false, "profile": "Sweet chestnut, vanilla, spice and warm amber.", "season": "Fall / Winter", "occasion": "Date night", "id": 22, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Lattafa", "name": "Eternal Oud", "tier": "Value", "unisex": true, "profile": "Sweet amber, vanilla, plum and smooth oud.", "season": "Fall / Winter", "occasion": "Evening", "id": 23, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Profundum", "name": "Fatale", "tier": "Prestige", "unisex": true, "profile": "Dense sensual woods, amber and dark florals.", "season": "Fall / Winter", "occasion": "Night", "id": 24, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "French Avenue", "name": "Feu", "tier": "Value", "unisex": true, "profile": "Warm spicy amber with smoky sweetness.", "season": "Fall / Winter", "occasion": "Evening", "id": 25, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Thomas de Monaco", "name": "Fuego Futuro", "tier": "Prestige", "unisex": true, "profile": "Artistic smoky woods, spice and glowing amber.", "season": "Fall / Winter", "occasion": "Statement", "id": 26, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Jo Milano", "name": "Game of Spades Double Bonus", "tier": "Value", "unisex": true, "profile": "Sweet fresh woods with smooth amber and musk.", "season": "All seasons", "occasion": "Daily", "id": 27, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Jo Milano", "name": "Game of Spades Fullhouse", "tier": "Value", "unisex": true, "profile": "Aromatic sweetness, woods and clean musk.", "season": "All seasons", "occasion": "Daily", "id": 28, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Jo Milano", "name": "Game of Spades Wildcard", "tier": "Value", "unisex": true, "profile": "Fresh spicy woods with amber and a smooth drydown.", "season": "All seasons", "occasion": "Daily", "id": 29, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Maison Francis Kurkdjian", "name": "Gentle Fluidity Gold", "tier": "Luxury", "unisex": true, "profile": "Vanilla, amber, musk and soft spices.", "season": "Fall / Winter", "occasion": "Elegant", "id": 30, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Maison Francis Kurkdjian", "name": "Gentle Fluidity Silver", "tier": "Luxury", "unisex": true, "profile": "Juniper, musk, woods and a cool aromatic freshness.", "season": "Spring / Summer", "occasion": "Office / Day", "id": 31, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Swiss Arabian", "name": "Incense 01", "tier": "Premium", "unisex": true, "profile": "Smoky incense, resins and dark woods.", "season": "Fall / Winter", "occasion": "Evening", "id": 32, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Goldfield & Banks", "name": "Ingenious Ginger", "tier": "Luxury", "unisex": true, "profile": "Sparkling ginger, citrus, vanilla and clean woods.", "season": "Spring / Summer", "occasion": "Daytime", "id": 33, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Montale", "name": "Intense Café", "tier": "Premium", "unisex": true, "profile": "Coffee, rose, vanilla and warm amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 34, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Mancera", "name": "Intense Cedrat Boise", "tier": "Premium", "unisex": true, "profile": "Citrus, leather, woods and smoky fruit.", "season": "All seasons", "occasion": "Signature", "id": 35, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Amouage", "name": "Interlude Man", "tier": "Prestige", "unisex": false, "profile": "Incense, oregano, amber, smoke and powerful resins.", "season": "Fall / Winter", "occasion": "Statement", "id": 36, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Memo Paris", "name": "Ithaque", "tier": "Luxury", "unisex": true, "profile": "Fresh aromatic greens, citrus and elegant woods.", "season": "Spring / Summer", "occasion": "Daytime", "id": 37, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Dolce & Gabbana", "name": "Light Blue Pour Homme Forever", "tier": "Premium", "unisex": false, "profile": "Grapefruit, marine freshness and clean woods.", "season": "Summer", "occasion": "Daytime", "id": 38, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "City Rhythm", "name": "Lights Down Low", "tier": "Premium", "unisex": true, "profile": "Sweet night-time amber with woods and sensual warmth.", "season": "Fall / Winter", "occasion": "Date night", "id": 39, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Amouage", "name": "Love Delight", "tier": "Luxury", "unisex": true, "profile": "Warm florals, spice, vanilla and soft amber.", "season": "Spring / Fall", "occasion": "Elegant", "id": 40, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Lattafa", "name": "Maahir Black Edition", "tier": "Value", "unisex": true, "profile": "Smoke, leather, dark woods and incense.", "season": "Fall / Winter", "occasion": "Evening", "id": 41, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Profundum", "name": "Martyr", "tier": "Prestige", "unisex": true, "profile": "Dark woods, incense and a dramatic resinous core.", "season": "Fall / Winter", "occasion": "Statement", "id": 42, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Orto Parisi", "name": "Megamare", "tier": "Luxury", "unisex": true, "profile": "Salty ocean air, mineral amber and powerful marine notes.", "season": "Spring / Summer", "occasion": "Statement", "id": 43, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Louis Vuitton", "name": "Météore", "tier": "Luxury", "unisex": false, "profile": "Bright citrus, pepper, clean woods and polished freshness.", "season": "Spring / Summer", "occasion": "Office / Day", "id": 44, "in_stock": true, "hall": true, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Ormonde Jayne", "name": "Montabaco Intensivo", "tier": "Luxury", "unisex": true, "profile": "Tobacco, suede, woods and smooth amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 45, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "D.S. & Durga", "name": "Notorious Oud", "tier": "Luxury", "unisex": true, "profile": "Dry oud, woods, spice and smoky leather.", "season": "Fall / Winter", "occasion": "Evening", "id": 46, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Initio", "name": "Oud for Greatness", "tier": "Luxury", "unisex": true, "profile": "Saffron, oud, lavender and powerful amber woods.", "season": "Fall / Winter", "occasion": "Statement", "id": 47, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Tom Ford", "name": "Oud Wood", "tier": "Luxury", "unisex": true, "profile": "Smooth oud, sandalwood, cardamom and amber.", "season": "Fall / Winter", "occasion": "Office / Evening", "id": 48, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "City Rhythm", "name": "Playa Crash Boat", "tier": "Premium", "unisex": true, "profile": "Tropical marine freshness with citrus and woods.", "season": "Summer", "occasion": "Vacation", "id": 49, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "City Rhythm", "name": "Puerto Rico", "tier": "Premium", "unisex": true, "profile": "Tropical fruit, rum-like warmth and coastal woods.", "season": "Spring / Summer", "occasion": "Vacation", "id": 50, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Amouage", "name": "Purpose 50", "tier": "Prestige", "unisex": true, "profile": "High-concentration woods, incense, spice and amber.", "season": "Fall / Winter", "occasion": "Formal / Statement", "id": 51, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Mancera", "name": "Red Tobacco", "tier": "Premium", "unisex": true, "profile": "Powerful tobacco, spice, vanilla and woods.", "season": "Fall / Winter", "occasion": "Night", "id": 52, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Xerjoff", "name": "Renaissance", "tier": "Luxury", "unisex": true, "profile": "Mint, citrus, green freshness and smooth musk.", "season": "Spring / Summer", "occasion": "Daytime", "id": 53, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Le Labo", "name": "Santal 33", "tier": "Luxury", "unisex": true, "profile": "Dry sandalwood, leather, violet and airy musk.", "season": "All seasons", "occasion": "Signature", "id": 54, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Dior", "name": "Sauvage Elixir", "tier": "Luxury", "unisex": false, "profile": "Dense spice, lavender, woods and exceptional projection.", "season": "Fall / Winter", "occasion": "Evening", "id": 55, "in_stock": true, "hall": true, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Anfas", "name": "Shaghaf", "tier": "Luxury", "unisex": true, "profile": "Citrus, cardamom, oud and polished amber.", "season": "All seasons", "occasion": "Signature", "id": 56, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Initio", "name": "Side Effect", "tier": "Luxury", "unisex": true, "profile": "Rum, tobacco, cinnamon and sweet vanilla.", "season": "Fall / Winter", "occasion": "Date night", "id": 57, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Thomas de Monaco", "name": "Sol Salgado", "tier": "Prestige", "unisex": true, "profile": "Solar marine freshness, salt, skin musk and woods.", "season": "Spring / Summer", "occasion": "Luxury daytime", "id": 58, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Tom Ford", "name": "Soleil Blanc", "tier": "Luxury", "unisex": true, "profile": "Creamy coconut, white florals, amber and sun-warmed skin.", "season": "Spring / Summer", "occasion": "Vacation", "id": 59, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Ex Nihilo", "name": "Speed Legends Night Drive", "tier": "Prestige", "unisex": true, "profile": "Modern high-luxury woods, spice and sleek night-time amber.", "season": "All seasons", "occasion": "Night", "id": 60, "in_stock": true, "hall": false, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}, {"house": "Afnan", "name": "Supremacy Collector's Edition", "tier": "Value", "unisex": false, "profile": "Fruity smoke, woods and rich amber.", "season": "All seasons", "occasion": "Daily", "id": 61, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Rubini", "name": "Tambour Sacré", "tier": "Luxury", "unisex": true, "profile": "Incense, spice, woods and artistic amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 62, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Rayhaan", "name": "Terra", "tier": "Value", "unisex": false, "profile": "Fresh aromatic woods with modern amber.", "season": "Spring / Summer", "occasion": "Daily", "id": 63, "in_stock": true, "hall": false, "prices": {"2": "$6", "5": "$14", "10": "$24", "15": "$34", "30": "$60"}}, {"house": "Francesca Bianchi", "name": "The Black Knight", "tier": "Luxury", "unisex": true, "profile": "Leather, vetiver, honey and smoky animalic woods.", "season": "Fall / Winter", "occasion": "Statement", "id": 64, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Tom Ford", "name": "Tobacco Vanille", "tier": "Luxury", "unisex": true, "profile": "Tobacco leaf, vanilla, dried fruit and warm spice.", "season": "Fall / Winter", "occasion": "Evening", "id": 65, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Kajal", "name": "Topaz", "tier": "Luxury", "unisex": true, "profile": "Polished citrus, florals, woods and amber.", "season": "All seasons", "occasion": "Elegant", "id": 66, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Argos", "name": "Triumph of Bacchus", "tier": "Luxury", "unisex": true, "profile": "Rum, tobacco, peach, vanilla and rich amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 67, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Tom Ford", "name": "Tuscan Leather", "tier": "Luxury", "unisex": true, "profile": "Raspberry, leather, saffron and smoky woods.", "season": "Fall / Winter", "occasion": "Statement", "id": 68, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Montale", "name": "Vanilla Cake", "tier": "Premium", "unisex": true, "profile": "Sweet vanilla, almond and creamy gourmand warmth.", "season": "Fall / Winter", "occasion": "Casual / Date", "id": 69, "in_stock": true, "hall": false, "prices": {"2": "$8", "5": "$18", "10": "$32", "15": "$48", "30": "$80"}}, {"house": "Sospiro", "name": "Vibrato", "tier": "Luxury", "unisex": true, "profile": "Citrus, ginger, musk and smooth woods.", "season": "Spring / Summer", "occasion": "Signature", "id": 70, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Francesca Bianchi", "name": "Voluptuous Oud", "tier": "Luxury", "unisex": true, "profile": "Rich oud, leather, florals and deep amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 71, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Xerjoff", "name": "Wardasina", "tier": "Luxury", "unisex": true, "profile": "Dark rose, tobacco, woods and warm amber.", "season": "Fall / Winter", "occasion": "Evening", "id": 72, "in_stock": true, "hall": false, "prices": {"2": "$12", "5": "$28", "10": "$50", "15": "$75", "30": "$140"}}, {"house": "Rubini", "name": "L'Eau Très Mer", "tier": "Prestige", "unisex": true, "profile": "Mineral marine freshness, salt air and refined woods.", "season": "Spring / Summer", "occasion": "Luxury daytime", "id": 73, "in_stock": true, "hall": true, "prices": {"2": "$18", "5": "$40", "10": "$75", "15": "$110", "30": "$220"}}];
+const symbols = {Value:"▲",Premium:"●",Luxury:"◆",Prestige:"★"};
+
+function renderHall(){
+  const hall = fragrances.filter(f=>f.hall);
+  document.getElementById('hallGrid').innerHTML = hall.map((f,i)=>`
+    <div class="hall-item" onclick="openModal(${f.id})">
+      <div><div class="house">${f.house}</div><strong>${f.name}</strong><div class="small">${symbols[f.tier]} ${f.tier} ${f.unisex?' • 🖤 Unisex':''}</div></div>
+      <div class="hall-num">${String(i+1).padStart(2,'0')}</div>
+    </div>`).join('');
+}
+
+function filtered(){
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  const tier=document.getElementById('tier').value;
+  const gender=document.getElementById('gender').value;
+  return fragrances.filter(f=>{
+    const hay=[f.house,f.name,f.profile,f.season,f.occasion].join(' ').toLowerCase();
+    const genderOK=!gender || (gender==='unisex'?f.unisex:!f.unisex);
+    return (!q||hay.includes(q)) && (!tier||f.tier===tier) && genderOK;
+  });
+}
+
+function renderGrid(){
+  const list=filtered();
+  document.getElementById('fragranceGrid').innerHTML = list.map(f=>`
+    <article class="card" onclick="openModal(${f.id})">
+      <div class="badges">
+        <span class="badge tier">${symbols[f.tier]} ${f.tier}</span>
+        ${f.unisex?'<span class="badge">🖤 Unisex</span>':''}
+        ${f.hall?'<span class="badge">Hall of Fame</span>':''}
+      </div>
+      <div class="house">${f.house}</div>
+      <h3>${f.name}</h3>
+      <p>${f.profile}</p>
+    </article>`).join('') || '<p>No fragrances match your search.</p>';
+}
+
+function openModal(id){
+  const f=fragrances.find(x=>x.id===id);
+  const p=f.prices;
+  document.getElementById('modalContent').innerHTML=`
+    <div class="badges"><span class="badge tier">${symbols[f.tier]} ${f.tier}</span>${f.unisex?'<span class="badge">🖤 Unisex</span>':''}</div>
+    <div class="house">${f.house}</div>
+    <h2>${f.name}</h2>
+    <p>${f.profile}</p>
+    <div class="detail-grid">
+      <div><span>Season</span>${f.season}</div>
+      <div><span>Best for</span>${f.occasion}</div>
+      <div><span>Status</span>${f.in_stock?'In Stock':'Out of Stock'}</div>
+    </div>
+    <table class="order-table">
+      <tr><th>2 mL</th><th>5 mL</th><th>10 mL</th><th>15 mL</th><th>30 mL</th></tr>
+      <tr><td>${p["2"]}</td><td>${p["5"]}</td><td>${p["10"]}</td><td>${p["15"]}</td><td>${p["30"]}</td></tr>
+    </table>
+    <a class="btn primary sms" href="sms:+13214309626?body=${encodeURIComponent('Hi Eddie, I am interested in '+f.house+' '+f.name+'.')}">Text Eddie to Order</a>`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+['search','tier','gender'].forEach(id=>document.getElementById(id).addEventListener('input',renderGrid));
+renderHall(); renderGrid();
+</script>
+</body>
+</html>
